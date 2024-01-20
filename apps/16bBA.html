@@ -38,6 +38,8 @@
                         this.txt = this.gdat.toString().replaceAll(',','')
                         this.grid.forEach(element => {
                             element.addEventListener('click', ()=>{
+                                this.txt = this.gdat.toString().replaceAll(',','')
+                                document.getElementById('txt').innerHTML = this.txt+"<br>(Split the characters like above)"
                                 if(this.gdat[element.getAttribute("data-gdatpos")] > 0){
                                     this.gdat[element.getAttribute("data-gdatpos")] = 0
                                     document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")-1).setAttribute('style','background:#00000000')
@@ -51,8 +53,6 @@
                     }
     
                     main(){
-                        this.txt = this.gdat.toString().replaceAll(',','')
-                        document.getElementById('txt').innerHTML = this.txt+"<br>(Split the characters like above)"
                         window.requestAnimationFrame(this.main)
                     }
                 }

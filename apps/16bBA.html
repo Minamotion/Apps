@@ -34,9 +34,10 @@
                 </style>
                 <script>
                     let gdat = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    let grid = [].slice.call(document.getElementById('grid').children)
+                    let grid = []
 
                     function beginframe(){
+                        grid = grid.slice.call(document.getElementById('grid').children)
                         let txt = gdat.toString().replaceAll(',','')
                         grid.forEach(element => {
                             element.addEventListener('click', ()=>{
@@ -52,11 +53,12 @@
                     }
 
                     function updateframe(){
+                        // Fix style
                         grid.forEach(element => {
                             if(gdat[element.getAttribute("data-gdatpos")] > 0){
-                                document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")-1).removeAttribute('style')
+                                document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")).removeAttribute('style')
                             } else {
-                                document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")-1).setAttribute('style','background:#000000')
+                                document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")).setAttribute('style','background:#000000')
                             }
                         })
                     }
@@ -79,6 +81,8 @@
             <app id="app" hidden>
                 <div class="center-child" style="width:auto;height:auto;">
                     <div id="grid">
+                        <!-- I just realized that Javascript was 0 indexed -->
+                        <div data-gdatpos=0 class="gdatvalue"></div>
                         <div data-gdatpos=1 class="gdatvalue"></div>
                         <div data-gdatpos=2 class="gdatvalue"></div>
                         <div data-gdatpos=3 class="gdatvalue"></div>
@@ -94,7 +98,6 @@
                         <div data-gdatpos=13 class="gdatvalue"></div>
                         <div data-gdatpos=14 class="gdatvalue"></div>
                         <div data-gdatpos=15 class="gdatvalue"></div>
-                        <div data-gdatpos=16 class="gdatvalue"></div>
                     </div>
                 </div>
                 <div>

@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Minamotion Apps - Home</title>
+        <title>Minamotion Apps - Grid</title>
         <link rel="stylesheet" href="https://minamotion.org/assets/stylesheets/main.css">
         <link rel="stylesheet" href="https://minamotion.org/assets/stylesheets/dialog.css">
         <link rel="icon" href="https://minamotion.org/assets/images/minamotion_logo.png">
@@ -13,55 +13,69 @@
     </head>
     <body id="body">
         <script src="https://minamotion.org/assets/scripts/safety.js" async=""></script>
-        <style>
-            :root{
-                --item-col-off: #00000000;
-                --item-col-on: #000000;
-            }
-
-            #grid{
-                display: grid;
-                background-color: white
-            }
-        </style>
-        <script>
-            class App {
-                constructor(){
-                    this.grid = document.getElementById('grid')
-                    this.gdat = [0,0,0,0,0,0,0,0,0]
+        <div id="contents" class="center-child">
+            <style>
+                #grid{
+                    display: grid;
+                    background-color: #ffffff;
+                    color: #000000;
+                    width: 70px;
+                    height: 100px;
+                    grid-template-columns: auto auto auto auto;
                 }
-
-                main(){
-                    this.grid.children.forEach(element => {
-                        element.addEventListener('click', ()=>{
-                            if(this.gdat[element.getAttribute("data-gdatpos")] > 0){
-                                this.gdat[element.getAttribute("data-gdatpos")] = 0
-                                element.innerHTML = 0
-                            } else {
-                                this.gdat[element.getAttribute("data-gdatpos")] = 1
-                                element.innerHTML = 1
-                            }
+            </style>
+            <script>
+                class App {
+                    constructor(){
+                        this.gdat = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        this.grid = [].slice.call(document.getElementById('grid').children)
+                        this.txt = this.gdat.toString().replaceAll(',','')
+                        this.grid.forEach(element => {
+                            element.addEventListener('click', ()=>{
+                                if(this.gdat[element.getAttribute("data-gdatpos")] > 0){
+                                    this.gdat[element.getAttribute("data-gdatpos")] = 0
+                                    document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")-1).innerHTML = 0
+                                } else {
+                                    this.gdat[element.getAttribute("data-gdatpos")] = 1
+                                    document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")-1).innerHTML = 1
+                                }
+                            })
                         })
-                    })
-                    window.requestAnimationFrame(this.main)
+                        delete this.grid
+                    }
+    
+                    main(){
+                        this.txt = this.gdat.toString().replaceAll(',','')
+                        window.requestAnimationFrame(this.main)
+                        document.getElementById('txt') = this.txt+" (Split the characters like above)"
+                    }
                 }
-            }
-
-            window.addEventListener('load', ()=>{
-                console.log('App started')
-                new App().main()
-            })
-        </script>
-        <div id="grid">
-            <div data-gdatpos=1>0</div>
-            <div data-gdatpos=2>0</div>
-            <div data-gdatpos=3>0</div>
-            <div data-gdatpos=4>0</div>
-            <div data-gdatpos=5>0</div>
-            <div data-gdatpos=6>0</div>
-            <div data-gdatpos=7>0</div>
-            <div data-gdatpos=8>0</div>
-            <div data-gdatpos=9>0</div>
+    
+                window.addEventListener('load', ()=>{
+                    console.log('App started')
+                    const app = new App()
+                    app.main()
+                })
+            </script>
+            <div id="grid">
+                <div data-gdatpos=1>0</div>
+                <div data-gdatpos=2>0</div>
+                <div data-gdatpos=3>0</div>
+                <div data-gdatpos=4>0</div>
+                <div data-gdatpos=5>0</div>
+                <div data-gdatpos=6>0</div>
+                <div data-gdatpos=7>0</div>
+                <div data-gdatpos=8>0</div>
+                <div data-gdatpos=9>0</div>
+                <div data-gdatpos=10>0</div>
+                <div data-gdatpos=11>0</div>
+                <div data-gdatpos=12>0</div>
+                <div data-gdatpos=13>0</div>
+                <div data-gdatpos=14>0</div>
+                <div data-gdatpos=15>0</div>
+                <div data-gdatpos=16>0</div>
+            </div>
+            <span id="txt"></span>
         </div>
     </body>
 </html>

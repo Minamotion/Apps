@@ -23,6 +23,12 @@
                     height: 100px;
                     grid-template-columns: auto auto auto auto;
                 }
+
+                .gdatvalue {
+                    width: 17.5px;
+                    height: 25px;
+                    margin: 0px;
+                }
             </style>
             <script>
                 class App {
@@ -34,10 +40,10 @@
                             element.addEventListener('click', ()=>{
                                 if(this.gdat[element.getAttribute("data-gdatpos")] > 0){
                                     this.gdat[element.getAttribute("data-gdatpos")] = 0
-                                    document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")-1).innerHTML = 0
+                                    document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")-1).setAttribute('style','background:#00000000')
                                 } else {
                                     this.gdat[element.getAttribute("data-gdatpos")] = 1
-                                    document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")-1).innerHTML = 1
+                                    document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")-1).setAttribute('style','background:#000000')
                                 }
                             })
                         })
@@ -46,36 +52,46 @@
     
                     main(){
                         this.txt = this.gdat.toString().replaceAll(',','')
-                        window.requestAnimationFrame(this.main)
                         document.getElementById('txt') = this.txt+" (Split the characters like above)"
+                        window.requestAnimationFrame(this.main)
                     }
                 }
-    
+                
+                const app = new App()
+
                 window.addEventListener('load', ()=>{
+                    document.getElementById('begin-btn').setAttribute('disabled', 'false')
+                })
+
+                document.getElementById('begin-btn').addEventListener('click', ()=>{
                     console.log('App started')
-                    const app = new App()
+                    document.getElementById('begin-btn').setAttribute('disabled', 'true')
+                    document.getElementById('begin-btn').innerHTML = 'App has begun'
                     app.main()
                 })
             </script>
-            <div id="grid">
-                <div data-gdatpos=1>0</div>
-                <div data-gdatpos=2>0</div>
-                <div data-gdatpos=3>0</div>
-                <div data-gdatpos=4>0</div>
-                <div data-gdatpos=5>0</div>
-                <div data-gdatpos=6>0</div>
-                <div data-gdatpos=7>0</div>
-                <div data-gdatpos=8>0</div>
-                <div data-gdatpos=9>0</div>
-                <div data-gdatpos=10>0</div>
-                <div data-gdatpos=11>0</div>
-                <div data-gdatpos=12>0</div>
-                <div data-gdatpos=13>0</div>
-                <div data-gdatpos=14>0</div>
-                <div data-gdatpos=15>0</div>
-                <div data-gdatpos=16>0</div>
+            <div id="app">
+                <div id="grid">
+                    <div data-gdatpos=1 class="gdatvalue"></div>
+                    <div data-gdatpos=2 class="gdatvalue"></div>
+                    <div data-gdatpos=3 class="gdatvalue"></div>
+                    <div data-gdatpos=4 class="gdatvalue"></div>
+                    <div data-gdatpos=5 class="gdatvalue"></div>
+                    <div data-gdatpos=6 class="gdatvalue"></div>
+                    <div data-gdatpos=7 class="gdatvalue"></div>
+                    <div data-gdatpos=8 class="gdatvalue"></div>
+                    <div data-gdatpos=9 class="gdatvalue"></div>
+                    <div data-gdatpos=10 class="gdatvalue"></div>
+                    <div data-gdatpos=11 class="gdatvalue"></div>
+                    <div data-gdatpos=12 class="gdatvalue"></div>
+                    <div data-gdatpos=13 class="gdatvalue"></div>
+                    <div data-gdatpos=14 class="gdatvalue"></div>
+                    <div data-gdatpos=15 class="gdatvalue"></div>
+                    <div data-gdatpos=16 class="gdatvalue"></div>
+                </div>
+                <span id="txt">Not started yet</span>
+                <button id="begin-btn" disabled>Begin</button>
             </div>
-            <span id="txt"></span>
         </div>
     </body>
 </html>

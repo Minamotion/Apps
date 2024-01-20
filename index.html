@@ -23,14 +23,16 @@
                 </div>
                 <br>
                 <button class="button" onclick="this.parent.close()">OK</button>
-                <script>this.parent.showModal()</script>
+                <script async>this.parent.showModal()</script>
             </dialog>
             <div class="wrap header">
                 <h1>APPS</h1>
                 <div class="hfButtons"></div>
             </div>
             <div id="contents">
-                <a href="/apps/grid.html">16bBA test</a>
+                <div class="center-child">
+                    <button onclick="location.assign('/apps/grid.html')">16bBA test</button>
+                </div>
             </div>
             <div class="wrap footer">
                 <img src="https://minamotion.org/assets/images/minamotion_logo.png" width="100" height="100">

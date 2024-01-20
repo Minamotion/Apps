@@ -59,6 +59,7 @@
                 }
                 const app = new App()
                 window.addEventListener('load', ()=>{
+                    document.getElementById('app').removeAttribute('hidden')
                     document.getElementById('begin-btn').removeAttribute('disabled')
                     document.getElementById('begin-btn').innerHTML = 'Start app'
                 })
@@ -67,7 +68,7 @@
                     console.log('App started')
                     document.getElementById('begin-btn').setAttribute('disabled', true)
                     document.getElementById('begin-btn').innerHTML = 'App started'
-                    app.main()
+                    app.start()
                 })
             </script>
             <div id="app">
@@ -94,7 +95,7 @@
                 <input id="txt" style="margin:24px" placeholder="################" readonly>
                 <span style="margin:24px;">Not started yet</span>
             </div>
-            <button id="begin-btn" class="button" disabled>Loading document</button>
+            <button id="begin-btn" class="button" disabled style="margin:auto;">Loading document</button>
         </div>
     </body>
 </html>

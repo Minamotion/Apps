@@ -12,7 +12,7 @@ class App {
     }
     update(){
         updateframe()
-        this.curframe++
+        this.curframe = this.curframe + 1
         window.requestAnimationFrame(this.update)
     }
 }

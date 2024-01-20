@@ -64,7 +64,7 @@
                     }
 
                     function loadsinglegrid(newinput) {
-                        let readinput = newinput.split('',17)
+                        let readinput = newinput.split('')
                         grid.forEach(element => {
                             if(readinput[element.getAttribute("data-gdatpos")] > 0){
                                 gdat[element.getAttribute("data-gdatpos")] = 0

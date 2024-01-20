@@ -52,7 +52,7 @@
     
                     main(){
                         this.txt = this.gdat.toString().replaceAll(',','')
-                        document.getElementById('txt') = this.txt+" (Split the characters like above)"
+                        document.getElementById('txt').innerText = this.txt+" (Split the characters like above)"
                         window.requestAnimationFrame(this.main)
                     }
                 }
@@ -61,37 +61,40 @@
 
                 window.addEventListener('load', ()=>{
                     document.getElementById('begin-btn').setAttribute('disabled', 'false')
+                    document.getElementById('begin-btn').innerHTML = 'Start app'
                 })
 
                 document.getElementById('begin-btn').addEventListener('click', ()=>{
                     console.log('App started')
                     document.getElementById('begin-btn').setAttribute('disabled', 'true')
-                    document.getElementById('begin-btn').innerHTML = 'App has begun'
+                    document.getElementById('begin-btn').innerHTML = 'Started app'
                     app.main()
                 })
             </script>
             <div id="app">
-                <div id="grid">
-                    <div data-gdatpos=1 class="gdatvalue"></div>
-                    <div data-gdatpos=2 class="gdatvalue"></div>
-                    <div data-gdatpos=3 class="gdatvalue"></div>
-                    <div data-gdatpos=4 class="gdatvalue"></div>
-                    <div data-gdatpos=5 class="gdatvalue"></div>
-                    <div data-gdatpos=6 class="gdatvalue"></div>
-                    <div data-gdatpos=7 class="gdatvalue"></div>
-                    <div data-gdatpos=8 class="gdatvalue"></div>
-                    <div data-gdatpos=9 class="gdatvalue"></div>
-                    <div data-gdatpos=10 class="gdatvalue"></div>
-                    <div data-gdatpos=11 class="gdatvalue"></div>
-                    <div data-gdatpos=12 class="gdatvalue"></div>
-                    <div data-gdatpos=13 class="gdatvalue"></div>
-                    <div data-gdatpos=14 class="gdatvalue"></div>
-                    <div data-gdatpos=15 class="gdatvalue"></div>
-                    <div data-gdatpos=16 class="gdatvalue"></div>
+                <div class="center-child">
+                    <div id="grid">
+                        <div data-gdatpos=1 class="gdatvalue"></div>
+                        <div data-gdatpos=2 class="gdatvalue"></div>
+                        <div data-gdatpos=3 class="gdatvalue"></div>
+                        <div data-gdatpos=4 class="gdatvalue"></div>
+                        <div data-gdatpos=5 class="gdatvalue"></div>
+                        <div data-gdatpos=6 class="gdatvalue"></div>
+                        <div data-gdatpos=7 class="gdatvalue"></div>
+                        <div data-gdatpos=8 class="gdatvalue"></div>
+                        <div data-gdatpos=9 class="gdatvalue"></div>
+                        <div data-gdatpos=10 class="gdatvalue"></div>
+                        <div data-gdatpos=11 class="gdatvalue"></div>
+                        <div data-gdatpos=12 class="gdatvalue"></div>
+                        <div data-gdatpos=13 class="gdatvalue"></div>
+                        <div data-gdatpos=14 class="gdatvalue"></div>
+                        <div data-gdatpos=15 class="gdatvalue"></div>
+                        <div data-gdatpos=16 class="gdatvalue"></div>
+                    </div>
+                    <span id="txt">Not started yet</span>
                 </div>
-                <span id="txt">Not started yet</span>
-                <button id="begin-btn" disabled>Begin</button>
             </div>
+            <button id="begin-btn" class="button" disabled>...</button>
         </div>
     </body>
 </html>

@@ -32,17 +32,17 @@
             </style>
             <script>
                 class App {
-                    constructor(){
+                    start(){
                         this.gdat = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         this.grid = [].slice.call(document.getElementById('grid').children)
                         this.txt = this.gdat.toString().replaceAll(',','')
                         this.grid.forEach(element => {
                             element.addEventListener('click', ()=>{
                                 this.txt = this.gdat.toString().replaceAll(',','')
-                                document.getElementById('txt').innerHTML = this.txt+"<br>(Split the characters like above)"
+                                document.getElementById('txt').setAttribute('value', this.txt)
                                 if(this.gdat[element.getAttribute("data-gdatpos")] > 0){
                                     this.gdat[element.getAttribute("data-gdatpos")] = 0
-                                    document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")-1).setAttribute('style','background:#00000000')
+                                    document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")-1).removeAttribute('style')
                                 } else {
                                     this.gdat[element.getAttribute("data-gdatpos")] = 1
                                     document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")-1).setAttribute('style','background:#000000')
@@ -50,15 +50,14 @@
                             })
                         })
                         delete this.grid
+                        this.update()
                     }
-    
-                    main(){
-                        window.requestAnimationFrame(this.main)
+
+                    update(){
+                        window.requestAnimationFrame(this.update)
                     }
                 }
-                
                 const app = new App()
-
                 window.addEventListener('load', ()=>{
                     document.getElementById('begin-btn').removeAttribute('disabled')
                     document.getElementById('begin-btn').innerHTML = 'Start app'
@@ -92,7 +91,8 @@
                         <div data-gdatpos=16 class="gdatvalue"></div>
                     </div>
                 </div>
-                <span id="txt" style="margin:auto;margin-inline:15px;">Not started yet</span>
+                <input id="txt" style="margin:24px" placeholder="################" readonly>
+                <span style="margin:24px;">Not started yet</span>
             </div>
             <button id="begin-btn" class="button" disabled>Loading document</button>
         </div>

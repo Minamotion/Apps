@@ -52,7 +52,7 @@
     
                     main(){
                         this.txt = this.gdat.toString().replaceAll(',','')
-                        document.getElementById('txt').innerText = this.txt+" (Split the characters like above)"
+                        document.getElementById('txt').innerHTML = this.txt+"<br>(Split the characters like above)"
                         window.requestAnimationFrame(this.main)
                     }
                 }

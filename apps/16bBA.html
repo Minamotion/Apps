@@ -37,8 +37,8 @@
                     let grid = []
 
                     function beginframe(){
-                        grid = grid.slice.call(document.getElementById('grid').children)
                         let txt = gdat.toString().replaceAll(',','')
+                        grid = grid.slice.call(document.getElementById('grid').children)
                         grid.forEach(element => {
                             element.addEventListener('click', ()=>{
                                 txt = gdat.toString().replaceAll(',','')
@@ -56,9 +56,9 @@
                         // Fix style
                         grid.forEach(element => {
                             if(gdat[element.getAttribute("data-gdatpos")] > 0){
-                                document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")).setAttribute('style','')
+                                document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")).setAttribute('style','background:black;')
                             } else {
-                                document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")).setAttribute('style','background:#000000')
+                                document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")).setAttribute('style','')
                             }
                         })
                     }
@@ -72,6 +72,7 @@
                                 gdat[element.getAttribute("data-gdatpos")] = 1
                             }
                         })
+                        let txt = gdat.toString().replaceAll(',','')
                     }
                 </script>
             </assets>

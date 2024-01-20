@@ -4,6 +4,7 @@
         <link rel="stylesheet" href="https://minamotion.org/assets/stylesheets/main.css">
         <link rel="stylesheet" href="https://minamotion.org/assets/stylesheets/dialog.css">
         <link rel="icon" href="https://minamotion.org/assets/images/minamotion_logo.png">
+        <link rel="stylesheet" href="/assets/stylesheets/app.css">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.5, minimum-scale=0.5">
         <meta charset="UTF-8">
         <meta name="description" content="Welcome to Minamotion Apps, here I develop apps whenever I can and want">
@@ -14,65 +15,54 @@
     <body id="body">
         <script src="https://minamotion.org/assets/scripts/safety.js" async=""></script>
         <div id="contents" class="center-child">
-            <style>
-                #grid{
-                    display: grid;
-                    background-color: #ffffff;
-                    color: #000000;
-                    width: 70px;
-                    height: 100px;
-                    grid-template-columns: auto auto auto auto;
-                }
-
-                .gdatvalue {
-                    width: 17.5px;
-                    height: 25px;
-                    margin: 0px;
-                }
-            </style>
-            <script>
-                class App {
-                    start(){
-                        this.gdat = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                        this.grid = [].slice.call(document.getElementById('grid').children)
-                        this.txt = this.gdat.toString().replaceAll(',','')
-                        this.grid.forEach(element => {
+            <assets id="app-assets">
+                <style>
+                    #grid{
+                        display: grid;
+                        background-color: #ffffff;
+                        color: #000000;
+                        width: 70px;
+                        height: 100px;
+                        grid-template-columns: auto auto auto auto;
+                    }
+    
+                    .gdatvalue {
+                        width: 17.5px;
+                        height: 25px;
+                        margin: 0px;
+                    }
+                </style>
+                <script>
+                    function beginframe(){
+                        let gdat = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        let grid = [].slice.call(document.getElementById('grid').children)
+                        let txt = gdat.toString().replaceAll(',','')
+                        grid.forEach(element => {
                             element.addEventListener('click', ()=>{
-                                this.txt = this.gdat.toString().replaceAll(',','')
-                                document.getElementById('txt').setAttribute('value', this.txt)
-                                if(this.gdat[element.getAttribute("data-gdatpos")] > 0){
-                                    this.gdat[element.getAttribute("data-gdatpos")] = 0
+                                txt = gdat.toString().replaceAll(',','')
+                                document.getElementById('txt').setAttribute('value', txt)
+                                if(gdat[element.getAttribute("data-gdatpos")] > 0){
+                                    gdat[element.getAttribute("data-gdatpos")] = 0
                                     document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")-1).removeAttribute('style')
                                 } else {
-                                    this.gdat[element.getAttribute("data-gdatpos")] = 1
+                                    gdat[element.getAttribute("data-gdatpos")] = 1
                                     document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")-1).setAttribute('style','background:#000000')
                                 }
                             })
                         })
-                        delete this.grid
-                        this.update()
+                        delete grid
                     }
 
-                    update(){
-                        window.requestAnimationFrame(this.update)
+                    function updateframe(){
+                        // Nothing to update
                     }
-                }
-                const app = new App()
-                window.addEventListener('load', ()=>{
-                    document.getElementById('app').removeAttribute('hidden')
-                    document.getElementById('begin-btn').removeAttribute('disabled')
-                    document.getElementById('begin-btn').innerHTML = 'Start app'
-                })
-
-                document.getElementById('begin-btn').addEventListener('click', ()=>{
-                    console.log('App started')
-                    document.getElementById('begin-btn').setAttribute('disabled', true)
-                    document.getElementById('begin-btn').innerHTML = 'App started'
-                    app.start()
-                })
-            </script>
-            <div id="app">
-                <div class="center-child" style="width:auto;">
+                </script>
+            </assets>
+            <assets id="app-assets-handler">
+                <script src="/assets/scripts/app.js"></script>
+            </assets>
+            <app id="app">
+                <div class="center-child" style="width:auto;height:auto;">
                     <div id="grid">
                         <div data-gdatpos=1 class="gdatvalue"></div>
                         <div data-gdatpos=2 class="gdatvalue"></div>
@@ -92,9 +82,9 @@
                         <div data-gdatpos=16 class="gdatvalue"></div>
                     </div>
                 </div>
+                <span style="margin:24px;">16bBA Encoder</span>
                 <input id="txt" style="margin:24px" placeholder="################" readonly>
-                <span style="margin:24px;">Not started yet</span>
-            </div>
+            </app>
             <button id="begin-btn" class="button" disabled style="margin:auto;">Loading document</button>
         </div>
     </body>

@@ -1,0 +1,14 @@
+/* Styles */
+app {
+    display: block;
+    border: #000000 16px solid;
+    background-color: #8baaff;
+    width: 500px;
+    height: 350px;
+    padding: 10px;
+}
+
+app[hidden] {
+    display:none;
+}
+

@@ -7,6 +7,7 @@ class App {
         beginframe()
         this.begin = true
         this.curframe = 1
+        console.log('App started')
         this.update()
     }
     update(){
@@ -17,12 +18,12 @@ class App {
 }
 const app = new App()
 window.addEventListener('load', ()=>{
-    document.getElementById('app').removeAttribute('hidden')
     document.getElementById('begin-btn').removeAttribute('disabled')
     document.getElementById('begin-btn').innerHTML = 'Start app'
     document.getElementById('begin-btn').addEventListener('click', ()=>{
-        console.log('App started')
+        document.getElementById('app').removeAttribute('hidden')
         document.getElementById('begin-btn').setAttribute('disabled', true)
+        document.getElementById('app').removeAttribute('hidden')
         document.getElementById('begin-btn').innerHTML = 'App started'
         app.start()
     })

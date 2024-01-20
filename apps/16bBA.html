@@ -33,40 +33,41 @@
                     }
                 </style>
                 <script>
+                    let gdat = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    let grid = [].slice.call(document.getElementById('grid').children)
+
                     function beginframe(){
-                        let gdat = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         let txt = gdat.toString().replaceAll(',','')
-                        let grid = [].slice.call(document.getElementById('grid').children)
                         grid.forEach(element => {
                             element.addEventListener('click', ()=>{
                                 txt = gdat.toString().replaceAll(',','')
                                 document.getElementById('txt').setAttribute('value', txt)
                                 if(gdat[element.getAttribute("data-gdatpos")] > 0){
                                     gdat[element.getAttribute("data-gdatpos")] = 0
-                                    document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")-1).removeAttribute('style')
                                 } else {
                                     gdat[element.getAttribute("data-gdatpos")] = 1
-                                    document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")-1).setAttribute('style','background:#000000')
                                 }
                             })
                         })
-                        delete grid
                     }
 
                     function updateframe(){
-                        // Nothing to update
+                        grid.forEach(element => {
+                            if(gdat[element.getAttribute("data-gdatpos")] > 0){
+                                document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")-1).removeAttribute('style')
+                            } else {
+                                document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")-1).setAttribute('style','background:#000000')
+                            }
+                        })
                     }
 
                     function loadsinglegrid(newinput) {
                         let readinput = newinput.split('',17)
-                        let grid = [].slice.call(document.getElementById('grid').children)
                         grid.forEach(element => {
                             if(readinput[element.getAttribute("data-gdatpos")] > 0){
                                 gdat[element.getAttribute("data-gdatpos")] = 0
-                                document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")-1).removeAttribute('style')
                             } else {
                                 gdat[element.getAttribute("data-gdatpos")] = 1
-                                document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")-1).setAttribute('style','background:#000000')
                             }
                         })
                     }
@@ -75,7 +76,7 @@
             <assets id="app-assets-handler">
                 <script src="/assets/scripts/app.js"></script>
             </assets>
-            <app id="app">
+            <app id="app" hidden>
                 <div class="center-child" style="width:auto;height:auto;">
                     <div id="grid">
                         <div data-gdatpos=1 class="gdatvalue"></div>
@@ -96,12 +97,16 @@
                         <div data-gdatpos=16 class="gdatvalue"></div>
                     </div>
                 </div>
-                <span style="margin:24px;">16bBA Encoder</span>
-                <input id="txt" style="margin:24px" placeholder="################" readonly>
+                <div>
+                    <span style="margin:24px;">16bBA Encoder</span>
+                    <input id="txt" style="margin:24px" placeholder="################" readonly>
+                </div>
                 <br>
-                <span style="margin:24px;">16bBA Decoder</span>
-                <input id="todecodetxt" style="margin:24px" placeholder="################">
-                <button class="button" onclick="if(app.begin){loadsinglegrid(document.getElementById('todecodetxt').value)}">Decode string</button>
+                <div>
+                    <span style="margin:24px;">16bBA Decoder</span>
+                    <input id="todecodetxt" style="margin:24px" placeholder="################">
+                    <button class="button" onclick="if(app.begin){loadsinglegrid(document.getElementById('todecodetxt').value)}">Decode string</button>
+                </div>
             </app>
             <button id="begin-btn" class="button" disabled style="margin:auto;">Loading document</button>
         </div>

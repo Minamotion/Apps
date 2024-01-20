@@ -1,4 +1,8 @@
 /* Styles */
+assets {
+    display: none;
+}
+
 app {
     display: block;
     border: #000000 16px solid;

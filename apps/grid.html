@@ -60,19 +60,19 @@
                 const app = new App()
 
                 window.addEventListener('load', ()=>{
-                    document.getElementById('begin-btn').setAttribute('disabled', 'false')
+                    document.getElementById('begin-btn').removeAttribute('disabled')
                     document.getElementById('begin-btn').innerHTML = 'Start app'
                 })
 
                 document.getElementById('begin-btn').addEventListener('click', ()=>{
                     console.log('App started')
-                    document.getElementById('begin-btn').setAttribute('disabled', 'true')
-                    document.getElementById('begin-btn').innerHTML = 'Started app'
+                    document.getElementById('begin-btn').setAttribute('disabled', true)
+                    document.getElementById('begin-btn').innerHTML = 'App started'
                     app.main()
                 })
             </script>
             <div id="app">
-                <div class="center-child">
+                <div class="center-child" style="width:auto;">
                     <div id="grid">
                         <div data-gdatpos=1 class="gdatvalue"></div>
                         <div data-gdatpos=2 class="gdatvalue"></div>
@@ -91,10 +91,10 @@
                         <div data-gdatpos=15 class="gdatvalue"></div>
                         <div data-gdatpos=16 class="gdatvalue"></div>
                     </div>
-                    <span id="txt" style="margin:auto;margin-inline:15px;">Not started yet</span>
                 </div>
+                <span id="txt" style="margin:auto;margin-inline:15px;">Not started yet</span>
             </div>
-            <button id="begin-btn" class="button" disabled>...</button>
+            <button id="begin-btn" class="button" disabled>Loading document</button>
         </div>
     </body>
 </html>

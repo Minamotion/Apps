@@ -1,9 +1,12 @@
 class App {
+    constructor(){
+        this.begin = false
+    }
     start(){
         beginframe()
+        this.begin = true
         this.update()
     }
-
     update(){
         updateframe()
         window.requestAnimationFrame(this.update)

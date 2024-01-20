@@ -35,8 +35,8 @@
                 <script>
                     function beginframe(){
                         let gdat = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                        let grid = [].slice.call(document.getElementById('grid').children)
                         let txt = gdat.toString().replaceAll(',','')
+                        let grid = [].slice.call(document.getElementById('grid').children)
                         grid.forEach(element => {
                             element.addEventListener('click', ()=>{
                                 txt = gdat.toString().replaceAll(',','')
@@ -55,6 +55,20 @@
 
                     function updateframe(){
                         // Nothing to update
+                    }
+
+                    function loadsinglegrid(newinput) {
+                        let readinput = newinput.split('',17)
+                        let grid = [].slice.call(document.getElementById('grid').children)
+                        grid.forEach(element => {
+                            if(readinput[element.getAttribute("data-gdatpos")] > 0){
+                                gdat[element.getAttribute("data-gdatpos")] = 0
+                                document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")-1).removeAttribute('style')
+                            } else {
+                                gdat[element.getAttribute("data-gdatpos")] = 1
+                                document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")-1).setAttribute('style','background:#000000')
+                            }
+                        })
                     }
                 </script>
             </assets>
@@ -84,6 +98,10 @@
                 </div>
                 <span style="margin:24px;">16bBA Encoder</span>
                 <input id="txt" style="margin:24px" placeholder="################" readonly>
+                <br>
+                <span style="margin:24px;">16bBA Decoder</span>
+                <input id="todecodetxt" style="margin:24px" placeholder="################">
+                <button class="button" onclick="if(app.begin){loadsinglegrid(document.getElementById('todecodetxt').value)}">Decode string</button>
             </app>
             <button id="begin-btn" class="button" disabled style="margin:auto;">Loading document</button>
         </div>

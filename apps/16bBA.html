@@ -56,7 +56,7 @@
                         // Fix style
                         grid.forEach(element => {
                             if(gdat[element.getAttribute("data-gdatpos")] > 0){
-                                document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")).removeAttribute('style')
+                                document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")).setAttribute('style','')
                             } else {
                                 document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")).setAttribute('style','background:#000000')
                             }

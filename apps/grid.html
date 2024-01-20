@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <title>Minamotion Apps - Home</title>
+        <link rel="stylesheet" href="https://minamotion.org/assets/stylesheets/main.css">
+        <link rel="stylesheet" href="https://minamotion.org/assets/stylesheets/dialog.css">
+        <link rel="icon" href="https://minamotion.org/assets/images/minamotion_logo.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.5, minimum-scale=0.5">
+        <meta charset="UTF-8">
+        <meta name="description" content="Welcome to Minamotion Apps, here I develop apps whenever I can and want">
+        <meta name="keywords" content="Minamotion, MultiLayer, Apps, Whatever, Websites, Blabla, Thing, Random">
+        <meta name="author" content="MultiLayer">
+        <meta name="application-name" content="Minamotion Apps">
+    </head>
+    <body id="body">
+        <script src="https://minamotion.org/assets/scripts/safety.js" async=""></script>
+        <style>
+            :root{
+                --item-col-off: #00000000;
+                --item-col-on: #000000;
+            }
+
+            #grid{
+                display: grid;
+                background-color: white
+            }
+        </style>
+        <script>
+            class App {
+                constructor(){
+                    this.grid = document.getElementById('grid')
+                    this.gdat = [0,0,0,0,0,0,0,0,0]
+                }
+
+                main(){
+                    this.grid.children.forEach(element => {
+                        element.addEventListener('click', ()=>{
+                            if(this.gdat[element.getAttribute("data-gdatpos")] > 0){
+                                this.gdat[element.getAttribute("data-gdatpos")] = 0
+                                element.innerHTML = 0
+                            } else {
+                                this.gdat[element.getAttribute("data-gdatpos")] = 1
+                                element.innerHTML = 1
+                            }
+                        })
+                    })
+                    window.requestAnimationFrame(this.main)
+                }
+            }
+
+            window.addEventListener('load', ()=>{
+                console.log('App started')
+                new App().main()
+            })
+        </script>
+        <div id="grid">
+            <div data-gdatpos=1>0</div>
+            <div data-gdatpos=2>0</div>
+            <div data-gdatpos=3>0</div>
+            <div data-gdatpos=4>0</div>
+            <div data-gdatpos=5>0</div>
+            <div data-gdatpos=6>0</div>
+            <div data-gdatpos=7>0</div>
+            <div data-gdatpos=8>0</div>
+            <div data-gdatpos=9>0</div>
+        </div>
+    </body>
+</html>

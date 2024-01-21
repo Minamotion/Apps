@@ -39,6 +39,7 @@
                 <script>
                     let gdat = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     let grid = []
+                    let txt = "0000000000000000"
 
                     function beginframe(){
                         let txt = gdat.toString().replaceAll(',','')
@@ -71,7 +72,7 @@
                             }
                             document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")).setAttribute('data-value',gdat[element.getAttribute("data-gdatpos")])
                         })
-                        let txt = gdat.toString().replaceAll(',','')
+                        txt = gdat.toString().replaceAll(',','')
                     }
                 </script>
             </assets>

@@ -1,7 +1,6 @@
 class App {
     constructor(){
         this.begin = false
-        this.curframe = 0
     }
     start(){
         beginframe()

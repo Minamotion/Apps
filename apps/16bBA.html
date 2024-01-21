@@ -45,22 +45,17 @@
                                 document.getElementById('txt').setAttribute('value', txt)
                                 if(gdat[element.getAttribute("data-gdatpos")] > 0){
                                     gdat[element.getAttribute("data-gdatpos")] = 0
+                                    document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")).setAttribute('style','background:black;')
                                 } else {
                                     gdat[element.getAttribute("data-gdatpos")] = 1
+                                    document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")).setAttribute('style','')
                                 }
                             })
                         })
                     }
 
                     function updateframe(){
-                        // Fix style
-                        grid.forEach(element => {
-                            if(gdat[element.getAttribute("data-gdatpos")] > 0){
-                                document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")).setAttribute('style','background:black;')
-                            } else {
-                                document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")).setAttribute('style','')
-                            }
-                        })
+                        // nothing to update
                     }
 
                     function loadsinglegrid(newinput) {
@@ -68,8 +63,10 @@
                         grid.forEach(element => {
                             if(readinput[element.getAttribute("data-gdatpos")] > 0){
                                 gdat[element.getAttribute("data-gdatpos")] = 0
+                                document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")).setAttribute('style','background:black;')
                             } else {
                                 gdat[element.getAttribute("data-gdatpos")] = 1
+                                document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")).setAttribute('style','')
                             }
                         })
                         let txt = gdat.toString().replaceAll(',','')
@@ -82,7 +79,6 @@
             <app id="app" hidden>
                 <div class="center-child" style="width:auto;height:auto;">
                     <div id="grid">
-                        <!-- I just realized that Javascript was 0 indexed -->
                         <div data-gdatpos=0 class="gdatvalue"></div>
                         <div data-gdatpos=1 class="gdatvalue"></div>
                         <div data-gdatpos=2 class="gdatvalue"></div>

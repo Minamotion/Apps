@@ -56,14 +56,14 @@
                     }
 
                     function updateframe(){
-                        document.getElementById('txt').value = gdat.toString()
+                        document.getElementById('txt').value = gdat.toString().replaceAll(',','')
                         grid.forEach(element => {
                             document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")).setAttribute('data-value',gdat[element.getAttribute("data-gdatpos")])
                         })
                     }
 
                     function loadsinglegrid(newinput) {
-                        let readinput = newinput.split(',')
+                        let readinput = newinput.split('')
                         grid.forEach(element => {
                             if(readinput[element.getAttribute("data-gdatpos")] > 0){
                                 gdat[element.getAttribute("data-gdatpos")] = 0

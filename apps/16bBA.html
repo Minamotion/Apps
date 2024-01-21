@@ -32,7 +32,7 @@
                         margin: 0px;
                     }
 
-                    .gdatvalue[data-value=1]{
+                    .gdatvalue[data-value~=1]{
                         background: black;
                     }
                 </style>
@@ -42,11 +42,10 @@
                     let txt = "0000000000000000"
 
                     function beginframe(){
-                        let txt = gdat.toString().replaceAll(',','')
+                        txt = gdat.toString().replaceAll(',','')
                         grid = grid.slice.call(document.getElementById('grid').children)
                         grid.forEach(element => {
                             element.addEventListener('click', ()=>{
-                                txt = gdat.toString().replaceAll(',','')
                                 document.getElementById('txt').setAttribute('value', txt)
                                 if(gdat[element.getAttribute("data-gdatpos")] > 0){
                                     gdat[element.getAttribute("data-gdatpos")] = 0
@@ -54,6 +53,7 @@
                                     gdat[element.getAttribute("data-gdatpos")] = 1
                                 }
                                 document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")).setAttribute('data-value',gdat[element.getAttribute("data-gdatpos")])
+                                txt = gdat.toString().replaceAll(',','')
                             })
                         })
                     }
@@ -66,9 +66,9 @@
                         let readinput = newinput.split('')
                         grid.forEach(element => {
                             if(readinput[element.getAttribute("data-gdatpos")] > 0){
-                                gdat[element.getAttribute("data-gdatpos")] = 1
-                            } else {
                                 gdat[element.getAttribute("data-gdatpos")] = 0
+                            } else {
+                                gdat[element.getAttribute("data-gdatpos")] = 1
                             }
                             document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")).setAttribute('data-value',gdat[element.getAttribute("data-gdatpos")])
                         })
@@ -108,7 +108,7 @@
                 <div>
                     <span style="margin:24px;">16bBA Decoder</span>
                     <input id="todecodetxt" style="margin:24px" placeholder="################">
-                    <button class="button" onclick="if(app.begin){loadsinglegrid(document.getElementById('todecodetxt').value)}">Decode string</button>
+                    <button class="button" onclick="if(app.begin){loadsinglegrid(document.getElementById('todecodetxt').value.toString())}">Decode string</button>
                 </div>
             </app>
             <button id="begin-btn" class="button" disabled style="margin:auto;">Loading document</button>

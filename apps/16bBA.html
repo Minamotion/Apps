@@ -31,6 +31,10 @@
                         height: 25px;
                         margin: 0px;
                     }
+
+                    .gdatvalue[data-value=1]{
+                        background: black;
+                    }
                 </style>
                 <script>
                     let gdat = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
@@ -45,11 +49,10 @@
                                 document.getElementById('txt').setAttribute('value', txt)
                                 if(gdat[element.getAttribute("data-gdatpos")] > 0){
                                     gdat[element.getAttribute("data-gdatpos")] = 0
-                                    document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")).setAttribute('style','background:black;')
                                 } else {
                                     gdat[element.getAttribute("data-gdatpos")] = 1
-                                    document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")).setAttribute('style','')
                                 }
+                                document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")).setAttribute('data-value',gdat[element.getAttribute("data-gdatpos")])
                             })
                         })
                     }
@@ -62,12 +65,11 @@
                         let readinput = newinput.split('')
                         grid.forEach(element => {
                             if(readinput[element.getAttribute("data-gdatpos")] > 0){
-                                gdat[element.getAttribute("data-gdatpos")] = 0
-                                document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")).setAttribute('style','background:black;')
-                            } else {
                                 gdat[element.getAttribute("data-gdatpos")] = 1
-                                document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")).setAttribute('style','')
+                            } else {
+                                gdat[element.getAttribute("data-gdatpos")] = 0
                             }
+                            document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")).setAttribute('data-value',gdat[element.getAttribute("data-gdatpos")])
                         })
                         let txt = gdat.toString().replaceAll(',','')
                     }
@@ -79,22 +81,22 @@
             <app id="app" hidden>
                 <div class="center-child" style="width:auto;height:auto;">
                     <div id="grid">
-                        <div data-gdatpos=0 class="gdatvalue"></div>
-                        <div data-gdatpos=1 class="gdatvalue"></div>
-                        <div data-gdatpos=2 class="gdatvalue"></div>
-                        <div data-gdatpos=3 class="gdatvalue"></div>
-                        <div data-gdatpos=4 class="gdatvalue"></div>
-                        <div data-gdatpos=5 class="gdatvalue"></div>
-                        <div data-gdatpos=6 class="gdatvalue"></div>
-                        <div data-gdatpos=7 class="gdatvalue"></div>
-                        <div data-gdatpos=8 class="gdatvalue"></div>
-                        <div data-gdatpos=9 class="gdatvalue"></div>
-                        <div data-gdatpos=10 class="gdatvalue"></div>
-                        <div data-gdatpos=11 class="gdatvalue"></div>
-                        <div data-gdatpos=12 class="gdatvalue"></div>
-                        <div data-gdatpos=13 class="gdatvalue"></div>
-                        <div data-gdatpos=14 class="gdatvalue"></div>
-                        <div data-gdatpos=15 class="gdatvalue"></div>
+                        <div data-gdatpos=0 data-value=0 class="gdatvalue"></div>
+                        <div data-gdatpos=1 data-value=0 class="gdatvalue"></div>
+                        <div data-gdatpos=2 data-value=0 class="gdatvalue"></div>
+                        <div data-gdatpos=3 data-value=0 class="gdatvalue"></div>
+                        <div data-gdatpos=4 data-value=0 class="gdatvalue"></div>
+                        <div data-gdatpos=5 data-value=0 class="gdatvalue"></div>
+                        <div data-gdatpos=6 data-value=0 class="gdatvalue"></div>
+                        <div data-gdatpos=7 data-value=0 class="gdatvalue"></div>
+                        <div data-gdatpos=8 data-value=0 class="gdatvalue"></div>
+                        <div data-gdatpos=9 data-value=0 class="gdatvalue"></div>
+                        <div data-gdatpos=10 data-value=0 class="gdatvalue"></div>
+                        <div data-gdatpos=11 data-value=0 class="gdatvalue"></div>
+                        <div data-gdatpos=12 data-value=0 class="gdatvalue"></div>
+                        <div data-gdatpos=13 data-value=0 class="gdatvalue"></div>
+                        <div data-gdatpos=14 data-value=0 class="gdatvalue"></div>
+                        <div data-gdatpos=15 data-value=0 class="gdatvalue"></div>
                     </div>
                 </div>
                 <div>

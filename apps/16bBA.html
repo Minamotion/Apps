@@ -24,6 +24,7 @@
                         width: 70px;
                         height: 100px;
                         grid-template-columns: auto auto auto auto;
+                        border: 10px solid #000000;
                     }
     
                     .gdatvalue {
@@ -39,40 +40,37 @@
                 <script>
                     let gdat = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     let grid = []
-                    let txt = "0000000000000000"
 
                     function beginframe(){
-                        txt = gdat.toString().replaceAll(',','')
                         grid = grid.slice.call(document.getElementById('grid').children)
                         grid.forEach(element => {
                             element.addEventListener('click', ()=>{
                                 document.getElementById('txt').setAttribute('value', txt)
                                 if(gdat[element.getAttribute("data-gdatpos")] > 0){
-                                    gdat[element.getAttribute("data-gdatpos")] = 0
-                                } else {
                                     gdat[element.getAttribute("data-gdatpos")] = 1
+                                } else {
+                                    gdat[element.getAttribute("data-gdatpos")] = 0
                                 }
-                                document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")).setAttribute('data-value',gdat[element.getAttribute("data-gdatpos")])
-                                txt = gdat.toString().replaceAll(',','')
                             })
                         })
                     }
 
                     function updateframe(){
-                        // nothing to update
+                        document.getElementById('txt').value = gdat.toString()
+                        grid.forEach(element => {
+                            document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")).setAttribute('data-value',gdat[element.getAttribute("data-gdatpos")])
+                        })
                     }
 
                     function loadsinglegrid(newinput) {
-                        let readinput = newinput.split('')
+                        let readinput = newinput.split(',')
                         grid.forEach(element => {
                             if(readinput[element.getAttribute("data-gdatpos")] > 0){
                                 gdat[element.getAttribute("data-gdatpos")] = 0
                             } else {
                                 gdat[element.getAttribute("data-gdatpos")] = 1
                             }
-                            document.getElementById('grid').children.item(element.getAttribute("data-gdatpos")).setAttribute('data-value',gdat[element.getAttribute("data-gdatpos")])
                         })
-                        txt = gdat.toString().replaceAll(',','')
                     }
                 </script>
             </assets>

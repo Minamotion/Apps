@@ -6,13 +6,11 @@ class App {
     start(){
         beginframe()
         this.begin = true
-        this.curframe = 1
         console.log('App started')
         this.update()
     }
     update(){
         updateframe()
-        this.curframe = this.curframe + 1
         window.requestAnimationFrame(this.update)
     }
 }
